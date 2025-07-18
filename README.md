@@ -1,23 +1,29 @@
-# Análisis de Red de Transporte Urbano
+# 🚍 Análisis de Red de Transporte Urbano
 
-## Descripción
-Esta aplicación web permite cargar la topología de una red de transporte público (metro, autobús) desde un archivo de texto y, utilizando el algoritmo de Dijkstra sobre una representación de lista de adyacencia, calcula la ruta de menor costo entre dos estaciones seleccionadas por el usuario.
+---
 
-## Tecnologías
-- **Astro** (framework de generación estática)  
-- **Tailwind CSS** (estilos utilitarios)  
-- **JavaScript** (lógica de cliente con Dijkstra)  
-- **HTML5 & CSS3**
+## 🌟 Descripción
+¡Bienvenido a tu copiloto de rutas urbanas! Esta web en Astro y Tailwind lee la topología de tu sistema de transporte (metros, autobuses) desde un archivo de texto, construye un grafo dirigido con lista de adyacencia y utiliza el algoritmo de Dijkstra para encontrar la ruta más rápida entre dos estaciones. Olvídate de perder tiempo: calcula y visualiza tu camino óptimo en un clic.
 
-## Instalación
+---
+
+## 🔧 Tecnologías
+- **Astro** – Framework de frontend estático  
+- **Tailwind CSS** – Estilos utilitarios a toda velocidad  
+- **JavaScript (ES6+)** – Lógica cliente: lectura de archivo + Dijkstra  
+- **HTML5 & CSS3** – Maquetación semántica y responsive  
+
+---
+
+## 🚀 Instalación & arranque
 
 ```bash
-# Clona el repositorio
+# 1. Clona este repositorio
 git clone https://github.com/tu-usuario/tu-repo.git
 cd tu-repo
 
-# Instala dependencias
+# 2. Instala dependencias
 npm install
 
-# Inicia el servidor de desarrollo
+# 3. Inicia el servidor de desarrollo
 npm run dev
