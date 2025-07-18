@@ -1,0 +1,65 @@
+---
+// Este array es el menú principal de la navbar.
+// Si mañana cambio el nombre de alguna sección o me da por agregar otra, solo la meto aquí y listo.
+const navLinks = [
+  { text: "Inicio", href: "#inicio" },
+  { text: "Instrucciones", href: "#instrucciones" },
+  { text: "Rutas Óptimas", href: "#rutas-optimas" }
+];
+// Importante: aquí las rutas son anclas a secciones dentro de la misma página, así que los href tienen “#”.
+
+---
+
+<!-- Esta es la barra superior fija y transparente.
+     Siempre la dejo arriba pa' que el usuario no se me pierda ni de broma -->
+<header class="absolute top-0 left-0 z-20 flex w-full items-start justify-between px-6 py-4">
+  <!-- Aquí va el logo (a veces se pixelea, pero igual lo amo jeje) -->
+  <img src="../../public/logo.png"  alt="Logo" class="h-6 w-auto" />
+
+  <!-- El clásico botón del menú hamburguesa pa' móviles.
+       Si no le pongo esto, nadie va a saber por dónde se abre el menú -->
+  <button id="menuBtn" class="h-5 w-5">
+    <img src="../../public/menu.png" alt="Open menu" class="h-full w-full" />
+  </button>
+</header>
+
+<!-- Este es el panel lateral que se desliza, o sea, el menú “fancy” pa' dispositivos pequeños.
+     Aquí aparecen los links del menú, y si le das fuera, se cierra (bueno, solo con el botón X, pero igual queda cool) -->
+<aside
+  id="menuPanel"
+  class="fixed inset-y-0 right-0 z-30 flex translate-x-full flex-col
+         bg-white shadow-xl p-8 text-gray-900 transition-transform duration-500 ease-in-out
+         w-full            
+         sm:w-3/4          
+         md:w-1/3          
+         lg:w-1/4"         
+>
+  <!-- El botón de cerrar (la X) nunca puede faltar.
+       Imagínate quedar atrapado en un menú sin salida, qué feo jaja -->
+  <button id="closeBtn" class="h-5 w-5 self-start">
+    <img src="../../public/x.png" alt="Close menu" class="h-full w-full" />
+  </button>
+
+  <!-- Aquí es donde recorro los links que definí arriba.
+       Así no tengo que escribir cada <a> a mano como en los viejos tiempos -->
+  <nav class="mt-16 space-y-6 text-2xl font-medium">
+    {navLinks.map(({ text, href }) => (
+      // Cada vez que agrego uno nuevo arriba, automáticamente aparece aquí.
+      <a href={href} class="block hover:text-sky-600">{text}</a>
+    ))}
+  </nav>
+</aside>
+
+<script is:inline>
+  // Aquí el JS minimalista pa' que el menú lateral se abra y se cierre.
+  // Nada de librerías pesadas, puro vanilla JS porque sí.
+  const menuBtn  = document.getElementById('menuBtn');
+  const closeBtn = document.getElementById('closeBtn');
+  const panel    = document.getElementById('menuPanel');
+
+  // Si el usuario le da a la hamburguesa, sale el menú deslizante (con el efecto ese de Tailwind que siempre olvido el nombre).
+  menuBtn?.addEventListener('click', () => panel?.classList.remove('translate-x-full'));
+
+  // Si le da a la X, pues lo escondo otra vez (como debe ser, pa' no estorbar).
+  closeBtn?.addEventListener('click', () => panel?.classList.add('translate-x-full'));
+</script>

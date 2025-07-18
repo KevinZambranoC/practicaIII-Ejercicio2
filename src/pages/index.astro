@@ -1,0 +1,311 @@
+---
+import Layout from '../layouts/Layout.astro';
+import NavBar from '../components/navbar.astro';
+// Sigo importando lo de siempre, si algún día le cambio el nombre me voy a volver loco buscándolo.
+---
+
+<Layout>
+  <!-- Barra de navegación, la clásica arriba. No la borres o todo se ve rarísimo. -->
+  <NavBar />
+
+  <!-- 1) HERO a pantalla completa: la portada que le da ese flow pro al sitio -->
+  <section
+    id="inicio"
+    class="w-screen h-screen 
+    flex items-center justify-center 
+    bg-cover bg-center bg-no-repeat"
+    style="background-image: url('/imagen.png')"
+  >
+    <div
+      class="w-[90vw] max-w-xl
+             sm:w-[80vw] sm:max-w-2xl
+             lg:w-[70vw] lg:max-w-3xl
+             mx-auto px-4 sm:px-6 lg:px-8
+             rounded-xl shadow-lg text-center"
+    >
+      <!-- El título principal y la descripción. Aquí es donde el usuario se da cuenta de qué va la página. -->
+      <h1
+        class="font-bold text-white mb-4
+               text-3xl      
+               sm:text-4xl    
+               lg:text-6xl   "
+      >
+        Rutas Óptimas de Transporte Urbano
+      </h1>
+      <p
+        class="text-white
+               text-base      
+               sm:text-xl     
+               lg:text-2xl"    
+      >
+        Calcula rápidamente las rutas más eficientes entre estaciones usando
+        el algoritmo de Dijkstra, facilitando tus desplazamientos urbanos.
+      </p>
+    </div>
+  </section>
+
+  <!-- Espaciador para separar secciones. Truquito visual, pero ayuda bastante. -->
+  <div class="w-full 
+  h-24 
+  bg-white"></div>
+
+  <!-- 2) INSTRUCCIONES: los pasos que nadie lee pero después pregunta igual -->
+  <section
+    id="instrucciones"
+    class="w-full
+           py-12       
+           sm:py-16    
+           lg:py-24    
+           bg-gray-100"
+  >
+    <div
+      class="max-w-[90vw] mx-auto
+             sm:max-w-5xl
+             lg:max-w-6xl
+             px-4 sm:px-6 lg:px-8"
+    >
+      <h2
+        class="font-bold text-center mb-12
+               text-2xl   
+               sm:text-4xl 
+               lg:text-6xl 
+               bg-gradient-to-r from-[#002f6c] via-[#00508f] to-[#0088bc]
+               bg-clip-text text-transparent"
+      >
+        Instrucciones
+      </h2>
+
+      <!-- Grid de instrucciones: así no hay excusa para no saber cómo usar la app. -->
+      <div class="grid grid-cols-1 gap-8
+                  sm:grid-cols-2 sm:gap-12
+                  lg:grid-cols-4 lg:gap-16"
+      >
+        <!-- Card 1: Subir el archivo de la red de transporte. -->
+        <div
+          class="bg-white
+                 p-6         
+                 sm:p-8      
+                 lg:p-10     
+                 rounded-2xl shadow-xl
+                 flex flex-col items-center text-center"
+        >
+          <h3
+            class="font-bold mb-4
+                   text-3xl    
+                   sm:text-4xl /
+                   lg:text-5xl 
+                   bg-gradient-to-r from-[#002f6c] via-[#00508f] to-[#0088bc]
+                   bg-clip-text text-transparent"
+          >
+            1
+          </h3>
+          <p
+            class="text-gray-600
+                   text-sm    
+                   sm:text-base 
+                   lg:text-lg"   
+          >
+            Carga el archivo: Haz clic en “Cargar archivo” y selecciona tu
+            red_transporte.txt.
+          </p>
+        </div>
+
+        <!-- Card 2: Verificar que lo que subiste tenga sentido (no subas el .txt del resumen de historia 😅) -->
+        <div class="bg-white p-6 
+        sm:p-8 lg:p-10 rounded-2xl shadow-xl 
+        flex flex-col items-center text-center">
+          <h3 class="font-bold mb-4 
+          text-3xl sm:text-4xl lg:text-5xl
+                     bg-gradient-to-r 
+                     from-[#002f6c] via-[#00508f] to-[#0088bc]
+                     bg-clip-text text-transparent">
+            2
+          </h3>
+          <p class="text-gray-600 
+          text-sm sm:text-base 
+          lg:text-lg">
+            Verifica los datos: Revisa la información mostrada para asegurar
+            que sea correcta.
+          </p>
+        </div>
+
+        <!-- Card 3: Aquí pones lo de done sales y a dónde quieres llegar. -->
+        <div class="bg-white p-6
+         sm:p-8 lg:p-10 rounded-2xl shadow-xl 
+         flex flex-col items-center text-center">
+          <h3 class="font-bold mb-4 text-3xl
+           sm:text-4xl lg:text-5xl
+                     bg-gradient-to-r from-[#002f6c] via-[#00508f] to-[#0088bc]
+                     bg-clip-text text-transparent">
+            3
+          </h3>
+          <p class="text-gray-600 text-sm 
+          sm:text-base lg:text-lg">
+            Establece ruta: Ingresa los IDs de estación de origen y destino.
+          </p>
+        </div>
+
+        <!-- Card 4: Aquí es donde pasa la magia. -->
+        <div class="bg-white p-6 sm:p-8 
+        lg:p-10 rounded-2xl shadow-xl flex flex-col 
+        items-center text-center">
+          <h3 class="font-bold mb-4 text-3xl sm:text-4xl lg:text-5xl
+                     bg-gradient-to-r from-[#002f6c] via-[#00508f] to-[#0088bc]
+                     bg-clip-text text-transparent">
+            4
+          </h3>
+          <p class="text-gray-600 
+          text-sm 
+          sm:text-base lg:text-lg">
+            Ejecuta: Presiona “Ejecutar” para obtener la ruta óptima.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3) Análisis de la red: donde el usuario realmente interactúa con la app -->
+  <section
+    id="rutas-optimas"
+    class="w-full
+           py-12       
+           sm:py-16    
+           lg:py-20    "
+  >
+    <div
+      class="max-w-[90vw] mx-auto
+             sm:max-w-3xl
+             lg:max-w-5xl
+             px-4 sm:px-6 lg:px-8
+             flex flex-col md:flex-row gap-8"
+    >
+      <!-- Izquierda: aqui es el panel dond se carga el archivo, origen, destino, y  le damos a ejecutar -->
+      <div class="flex flex-col 
+      w-full md:w-1/2 
+      gap-8">
+        <textarea
+          id="networkArea"
+          rows="10"
+          class="w-full h-52
+                 rounded-lg border border-gray-300
+                 p-2 sm:p-4
+                 resize-none
+                 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+          placeholder="Contenido de red_transporte.txt"
+        ></textarea>
+        <div class="flex flex-wrap 
+        justify-center gap-4">
+          <button
+            id="loadNetworkBtn"
+            class="rounded-full bg-indigo-600 
+            px-4 sm:px-6 py-2 text-white 
+            hover:bg-indigo-700"
+          >
+            Cargar archivo
+          </button>
+          <button
+            id="clearNetworkBtn"
+            class="rounded-full 
+            bg-indigo-600 px-4 sm:px-6 py-2 
+            text-white hover:bg-indigo-700"
+          >
+            Limpiar
+          </button>
+        </div>
+        <!-- Inputs para poner el ID de la estación de origen y de destino y botón para ejecutar la búsqueda -->
+        <div class="flex flex-col 
+        sm:flex-row gap-4">
+          <input
+            id="originInput"
+            type="number"
+            placeholder="ID Origen"
+            class="w-full sm:flex-1 
+            rounded-lg border border-gray-300 p-2 sm:p-3
+             focus:ring-indigo-400 
+             focus:outline-none"
+          />
+          <input
+            id="destInput"
+            type="number"
+            placeholder="ID Destino"
+            class="w-full sm:flex-1 
+            rounded-lg border border-gray-300 p-2 
+            sm:p-3 focus:ring-indigo-400 
+            focus:outline-none"
+          />
+          <button
+            id="runRouteBtn"
+            class="rounded-full 
+            bg-indigo-600 px-4 sm:px-6 py-2 
+            text-white hover:bg-indigo-700"
+          >
+            Ejecutar
+          </button>
+        </div>
+      </div>
+
+      <!-- Derecha: imagen decorativa para acompañar la acción, solo visual, no interactúa. -->
+      <div class="w-full md:w-1/2 
+      rounded-xl shadow-md 
+      overflow-hidden">
+        <img
+          src="/imagen1.png"
+          alt="Resultado visual"
+          class="w-full h-full object-cover"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL DE RESULTADO: aparece solo cuando el usuario calcula una ruta. -->
+  <div
+    id="resultModal"
+    class="fixed inset-0 
+    flex flex-col items-center 
+    justify-center
+           bg-gradient-to-br from-[#0b1222] via-[#1e2c3b] to-[#3a4b6a]
+           bg-animated-gradient hidden"
+  >
+    <!-- Caja blanca con el resultado y botones. -->
+    <div class="flex 
+    flex-col items-center 
+    justify-center bg-white 
+    rounded-xl p-6 max-w-md 
+    w-full shadow-xl">
+      <h2 class="text-xl font-bold 
+      mb-4 text-center">Rutas Óptimas</h2>
+      <pre id="routeOutput" class="whitespace-pre-wrap text-gray-800"></pre>
+    </div>
+
+    <!-- Botones para cerrar el modal o descargar el resultado. -->
+    <div class="mt-4 flex gap-4">
+      <button
+        id="closeModalBtn"
+        class="px-6 py-2 bg-blue-600 
+        text-white rounded-lg hover:bg-blue-700"
+      >
+        Cerrar
+      </button>
+      <a
+        id="downloadRoutesBtn"
+        download="rutas_optimas.txt"
+        class="px-6 py-2 bg-blue-600 
+        text-white rounded-lg 
+        hover:bg-blue-700"
+        href="#"
+      >
+        Descargar
+      </a>
+    </div>
+  </div>
+
+  <!-- Input file oculto para subir el .txt de la red, no lo toques ni lo borres, hace falta sí o sí. -->
+  <input id="fileInput" type="file" accept=".txt" class="hidden" />
+
+  <!-- Script que conecta el cerebro de la página con el HTML.
+       Si esto no se carga, nada funciona. Literal. -->
+  <script type="module">
+    import { setupRouteDetection } from '/scripts/routes.js';
+    setupRouteDetection();
+  </script>
+</Layout>
